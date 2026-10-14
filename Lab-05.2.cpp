@@ -1,59 +1,55 @@
-// Лабораторна робота № 5.2 (Варіант 18)
 #include <iostream>
 #include <iomanip>
 #include <cmath>
 
 using namespace std;
 
-void S(const double x, const double eps, int& n, double& s);
-void A(const double x, const int n, double& a);
+// Реалізація функції обчислення ряду Тейлора для ln(x) (Блок-схема 3)
+double f(const double x) {
+    if (x <= 0.0 || x > 2.0) {
+        return 0.0;
+    }
 
-int main()
-{
-    double xp, xk, x, dx, eps, s = 0;
+    double s = 0.0;
+    double term = x - 1.0;
     int n = 0;
 
-    cout << "xp = "; cin >> xp;
-    cout << "xk = "; cin >> xk;
-    cout << "dx = "; cin >> dx;
-    cout << "eps = "; cin >> eps;
-
-    cout << fixed;
-    cout << "-------------------------------------------------\n";
-    cout << "|" << setw(7) << "x"
-        << "|" << setw(10) << "ln(x)"
-        << "|" << setw(10) << "S"
-        << "|" << setw(5) << "n" << " |\n";
-    cout << "-------------------------------------------------\n";
-
-    x = xp;
-    while (x <= xk)
-    {
-        S(x, eps, n, s);
-        cout << "|" << setw(7) << setprecision(2) << x
-            << "|" << setw(10) << setprecision(5) << log(x)
-            << "|" << setw(10) << setprecision(5) << s
-            << "|" << setw(5) << n << " |\n";
-        x += dx;
-    }
-    cout << "-------------------------------------------------\n";
-    return 0;
-}
-
-void S(const double x, const double eps, int& n, double& s)
-{
-    n = 0;
-    double a = x - 1;
-    s = a;
-    do {
+    while (n < 10) {
+        s += term / (n + 1.0);
+        term *= -(x - 1.0);
         n++;
-        A(x, n, a);
-        s += a;
-    } while (abs(a) >= eps);
+    }
+
+    return s;
 }
 
-void A(const double x, const int n, double& a)
-{
-    double R = -(n * (x - 1)) / (n + 1);
-    a = a * (-1) * (x - 1) * n / (n + 1);
+int main() {
+    double tp, tk;
+    int n;
+
+    // Введення початкових даних
+    cout << "tp = "; cin >> tp;
+    cout << "tk = "; cin >> tk;
+    cout << "n = "; cin >> n;
+
+    double dt = (tk - tp) / n;
+    double t = tp;
+
+    
+    cout << fixed << setprecision(5);
+    cout << "---------------------------------\n";
+    cout << "|" << setw(12) << "t" << " | " << setw(12) << "res" << " |\n";
+    cout << "---------------------------------\n";
+
+    
+    while (t <= tk) {
+        double res = f(1.0 + 2.0 * t) + pow(f(1.0) + 2.0 * f(2.0 * t), 2);
+
+        cout << "|" << setw(12) << t << " | " << setw(12) << res << " |\n";
+
+        t += dt;
+    }
+    cout << "---------------------------------\n";
+
+    return 0;
 }
