@@ -1,24 +1,21 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "../ConsoleApplication1/ConsoleApplication1.cpp"
+
+
+#include "../CollectionApplication.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-// Додаємо цей рядок, щоб підказати компілятору, як виглядає функція f
-double f(const double x);
-
-namespace UnitTest3
+namespace CollectionTests
 {
-	TEST_CLASS(UnitTest3)
+	TEST_CLASS(CollectionTests)
 	{
 	public:
-
 		TEST_METHOD(TestMethod1)
 		{
-			double x = 1.0;
+			int n = 0;
 			double expected = 0.0;
-			Assert::AreEqual(expected, f(x), 1e-6);
+			Assert::AreEqual(expected, S(1.0, 1e-5, n), 1e-6);
 		}
 	};
 }
-
