@@ -1,21 +1,22 @@
-#include <iostream>
-using namespace std;
+#include "pch.h"
+#include "CppUnitTest.h"
+#include "../CollectionApplication.cpp"
 
-// Функція для додавання двох цілих чисел
-int sum(int x, int y)
+using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+
+int sum(int x, int y);
+
+namespace UnitTest1
 {
-    return x + y;
-}
+	TEST_CLASS(UnitTest1)
+	{
+	public:
 
-int main()
-{
-    int a, b;
-    cout << "a = ?"; cin >> a;
-    cout << "b = ?"; cin >> b;
-
-    int c = sum(a, b);
-    cout << "c = " << c << endl;
-
-    system("pause");
-    return 0;
+		TEST_METHOD(TestMethod1)
+		{
+			int t;
+			t = sum(2, 3);
+			Assert::AreEqual(t, 5);
+		}
+	};
 }
