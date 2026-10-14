@@ -1,18 +1,15 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "../ConsoleApplication1/ConsoleApplication1.cpp"
 
+
+#include "../CollectionApplication.cpp"
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-// Додайте цей рядок сюди:
-double f(const double x);
-
-namespace UnitTest3
+namespace CollectionTests
 {
-	TEST_CLASS(UnitTest3)
+	TEST_CLASS(CollectionTests)
 	{
 	public:
-
 		TEST_METHOD(TestMethod1)
 		{
 			double x = 2.0;
