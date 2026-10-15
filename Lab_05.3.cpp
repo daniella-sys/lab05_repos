@@ -26,7 +26,7 @@ int main() {
     cout << "----------------------------------------" << endl;
 
     while (t <= tk) {
-        double res = f(1.0 + 2.0 * t) + pow(f(1.0) + 2.0 * f(2.0 * t), 2);
+        double res = f(1.0 + 2.0 * t) + pow(f(f(1.0) + 2.0 * f(2.0 * t)), 2);
 
         cout << "| " << setw(10) << setprecision(4) << t
             << " | " << setw(24) << setprecision(6) << res << " |" << endl;
